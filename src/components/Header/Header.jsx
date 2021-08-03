@@ -1,5 +1,10 @@
-import './Header.css'
+import scrollToTheTop from "../../helpers/ScrollToTheTop";
+import "./Header.css";
 
 export default function Header() {
-    return <span className='header'>MOVIES</span>
+  return (
+    <span onClick={scrollToTheTop} className="header">
+      MOVIES
+    </span>
+  );
 }
