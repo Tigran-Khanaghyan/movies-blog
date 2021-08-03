@@ -2,9 +2,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Restore";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import WhatshotIcon from '@material-ui/icons/Whatshot';
+import SearchIcon from '@material-ui/icons/Search';
+
 
 const useStyles = makeStyles({
   root: {
@@ -29,9 +30,9 @@ export default function SimpleBottomNavigation() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+      <BottomNavigationAction style ={{color: "white"}} label="Trending" icon={<WhatshotIcon />} />
+      <BottomNavigationAction style ={{color: "white"}} label="Favorites" icon={<FavoriteIcon />} />
+      <BottomNavigationAction style ={{color: "white"}} label="Search" icon={<SearchIcon />} />
     </BottomNavigation>
   );
 }
