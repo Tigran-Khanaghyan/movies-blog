@@ -1,9 +1,15 @@
-import Main from "./components/Main/Main";
-
+import "./App.css";
+import Header from "./components/Header/Header";
+import React from "react";
+import SimpleBottomNavigation from "./components/BottomNav/BottomNav";
 
 function App() {
   return (
-   <Main/>
+    <>
+      <Header />
+      <div className="app"></div>
+      <SimpleBottomNavigation />
+    </>
   );
 }
 
