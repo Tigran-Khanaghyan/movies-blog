@@ -30,7 +30,7 @@ export default function SimpleBottomNavigation() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction style ={{color: "white"}} label="Trending" icon={<WhatshotIcon />} />
+      <BottomNavigationAction style ={{color: "white"}} label="Movies" icon={<WhatshotIcon />} />
       <BottomNavigationAction style ={{color: "white"}} label="Favorites" icon={<FavoriteIcon />} />
       <BottomNavigationAction style ={{color: "white"}} label="Search" icon={<SearchIcon />} />
     </BottomNavigation>
