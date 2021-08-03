@@ -3,9 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import WhatshotIcon from '@material-ui/icons/Whatshot';
-import SearchIcon from '@material-ui/icons/Search';
-
+import WhatshotIcon from "@material-ui/icons/Whatshot";
+import SearchIcon from "@material-ui/icons/Search";
+import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 const useStyles = makeStyles({
   root: {
@@ -20,6 +21,13 @@ const useStyles = makeStyles({
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (value === 0) history.push("/");
+    if (value === 1) history.push("/favorites");
+    if (value === 2) history.push("/search");
+  }, [value, history]);
 
   return (
     <BottomNavigation
@@ -30,9 +38,21 @@ export default function SimpleBottomNavigation() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction style ={{color: "white"}} label="Movies" icon={<WhatshotIcon />} />
-      <BottomNavigationAction style ={{color: "white"}} label="Favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction style ={{color: "white"}} label="Search" icon={<SearchIcon />} />
+      <BottomNavigationAction
+        style={{ color: "white" }}
+        label="Movies"
+        icon={<WhatshotIcon />}
+      />
+      <BottomNavigationAction
+        style={{ color: "white" }}
+        label="Favorites"
+        icon={<FavoriteIcon />}
+      />
+      <BottomNavigationAction
+        style={{ color: "white" }}
+        label="Search"
+        icon={<SearchIcon />}
+      />
     </BottomNavigation>
   );
 }
