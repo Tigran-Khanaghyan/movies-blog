@@ -3,7 +3,7 @@
     cursor: pointer;
     position: fixed;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     background-color:#171c24 ;
     font-family: "Montserrat"; 
     font-size: 5vw;
@@ -12,6 +12,7 @@
     color: white;
     z-index: 100;
 }
+
 
 @media (max-width: 1000px){
     .header {
