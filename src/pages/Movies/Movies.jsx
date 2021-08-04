@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import './Movies.css'
+import "./Movies.css";
 import { useState, useEffect } from "react";
 import MovieCard from "../../components/MovieCard/MovieCard";
 
@@ -11,7 +11,7 @@ export default function Movies() {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`
     );
-    console.log(data.results);
+    console.log(data);
     setContent(data.results);
   };
   useEffect(() => {
