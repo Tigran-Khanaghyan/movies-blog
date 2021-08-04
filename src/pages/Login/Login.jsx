@@ -40,11 +40,11 @@ export default function LogIn() {
 
   let onSubmit = (values, props) => {
     props.resetForm();
-    console.log(props);
+    console.log(values);
   };
   const validationSchema = Yup.object().shape({
     name: Yup.string("ErrorMassage")
-      .test("len", "Minimum 3 characters", (val) => val.length >= 3)
+      .test("len", "Minimum 3 characters", (val) => val ? val.length >= 3 : 0)
       .required("Required"),
     password: Yup.string("ErrorMassage").required("Required"),
   });
