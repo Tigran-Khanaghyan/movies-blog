@@ -7,6 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const theme = createTheme({
   palette: {
@@ -36,6 +38,22 @@ const useStyles = makeStyles((theme) => ({
 export default function LogIn() {
   const classes = useStyles();
 
+  let onSubmit = (values, props) => {
+    props.resetForm();
+    console.log(props);
+  };
+  const validationSchema = Yup.object().shape({
+    name: Yup.string("ErrorMassage")
+      .test("len", "Minimum 3 characters", (val) => val.length >= 3)
+      .required("Required"),
+    password: Yup.string("ErrorMassage").required("Required"),
+  });
+
+  const initialValues = {
+    name: "",
+    password: "",
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -47,39 +65,52 @@ export default function LogIn() {
           <Typography component="h1" variant="h5">
             Լօg in
           </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+          <Formik
+            className={classes.form}
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+          >
+            {(props) => (
+              <Form>
+                <Field
+                  as={TextField}
+                  helperText={<ErrorMessage name="name" />}
+                  name="name"
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Name"
+                  autoComplete="Name"
+                  autoFocus
+                />
+                <Field
+                  as={TextField}
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  helperText={<ErrorMessage name="password" />}
+                />
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              className={classes.submit}
-            >
-              Log In
-            </Button>
-          </form>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  className={classes.submit}
+                >
+                  Log In
+                </Button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </Container>
     </ThemeProvider>
