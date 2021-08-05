@@ -1,25 +1,42 @@
 import axios from "axios";
 import React from "react";
 import "./Movies.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import MovieCard from "../../components/MovieCard/MovieCard";
-import PagePagination from "../../components/Pagination/PagePagination";
+import Loading from '../../images/Loading.gif'
 
 export default function Movies() {
   const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false)
+  const endPage = useRef()
 
   const fetchMovies = async () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
     );
-    console.log(data);
-    setContent(data.results);
+    setContent(prevContent => [...prevContent, ...data.results]);
+    setLoading(true)
   };
 
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [page]);
+
+  const loadMore = () =>  {
+    setPage(prevPage => prevPage + 1)
+  }
+
+  useEffect(() => {
+    if(loading){
+      const observer = new IntersectionObserver(entries => {
+        if(entries[0].isIntersecting){
+          loadMore()
+        }
+      }, {threshold: 1})
+      observer.observe(endPage.current)
+    }
+  }, [loading])
 
   return (
     <div>
@@ -39,7 +56,9 @@ export default function Movies() {
             />
           ))}
       </div>
-      <PagePagination/>
+            <div ref={endPage} className="loading">
+              <img src={Loading} alt="loading gif" />
+            </div>
     </div>
   );
 }
