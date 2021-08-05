@@ -31,7 +31,7 @@ export default function Movies() {
     if(loading){
       const observer = new IntersectionObserver(entries => {
         if(entries[0].isIntersecting){
-          loadMore()
+          // loadMore()
         }
       }, {threshold: 1})
       observer.observe(endPage.current)
@@ -39,7 +39,7 @@ export default function Movies() {
   }, [loading])
 
   return (
-    <div>
+    <div className='container'>
       <span className="pageTitle">Top Movies</span>
       <div className="movies">
         {console.log(content)}
