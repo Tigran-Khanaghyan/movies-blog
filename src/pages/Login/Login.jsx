@@ -6,9 +6,9 @@ import ComputerIcon from "@material-ui/icons/Computer";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const theme = createTheme({
   palette: {

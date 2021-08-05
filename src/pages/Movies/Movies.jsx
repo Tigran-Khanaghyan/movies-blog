@@ -4,6 +4,7 @@ import "./Movies.css";
 import { useState, useEffect, useRef } from "react";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import Loading from '../../images/Loading.gif'
+import Search from "../../components/Search/Search";
 
 export default function Movies() {
   const [content, setContent] = useState([]);
@@ -21,6 +22,8 @@ export default function Movies() {
 
   useEffect(() => {
     fetchMovies();
+
+
   }, [page]);
 
   const loadMore = () =>  {
@@ -31,7 +34,7 @@ export default function Movies() {
     if(loading){
       const observer = new IntersectionObserver(entries => {
         if(entries[0].isIntersecting){
-          // loadMore()
+          loadMore()
         }
       }, {threshold: 1})
       observer.observe(endPage.current)
@@ -40,7 +43,7 @@ export default function Movies() {
 
   return (
     <div className='container'>
-      <span className="pageTitle">Top Movies</span>
+      <Search/>
       <div className="movies">
         {console.log(content)}
         {content &&

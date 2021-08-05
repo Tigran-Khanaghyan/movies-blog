@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container } from "@material-ui/core";
 import Movies from "./pages/Movies/Movies";
 import Favorites from "./pages/Favorites/Favorites";
-import Search from "./pages/Search/Search";
 import LogIn from "./pages/Login/Login";
 
 function App() {
@@ -18,8 +17,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Movies} />
             <Route path="/favorites" component={Favorites} />
-            <Route path="/search" component={Search} />
-            <Route path="/login" component={LogIn}/> 
+            <Route path="/login" component={LogIn} />
           </Switch>
         </Container>
       </div>
