@@ -3,49 +3,47 @@ import React from "react";
 import "./Movies.css";
 import { useState, useEffect, useRef } from "react";
 import MovieCard from "../../components/MovieCard/MovieCard";
-import Loading from '../../images/Loading.gif'
-import Search from "../../components/Search/Search";
+import Loading from "../../images/Loading.gif";
 
 export default function Movies() {
   const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false)
-  const endPage = useRef()
+  const [loading, setLoading] = useState(false);
+  const endPage = useRef();
 
   const fetchMovies = async () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
     );
-    setContent(prevContent => [...prevContent, ...data.results]);
-    setLoading(true)
+    setContent((prevContent) => [...prevContent, ...data.results]);
+    setLoading(true);
   };
 
   useEffect(() => {
     fetchMovies();
-
-
   }, [page]);
 
-  const loadMore = () =>  {
-    setPage(prevPage => prevPage + 1)
-  }
+  const loadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   useEffect(() => {
-    if(loading){
-      const observer = new IntersectionObserver(entries => {
-        if(entries[0].isIntersecting){
-          loadMore()
-        }
-      }, {threshold: 1})
-      observer.observe(endPage.current)
+    if (loading) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            loadMore();
+          }
+        },
+        { threshold: 1 }
+      );
+      observer.observe(endPage.current);
     }
-  }, [loading])
+  }, [loading]);
 
   return (
-    <div className='container'>
-      <Search/>
+    <div className="container">
       <div className="movies">
-        {console.log(content)}
         {content &&
           content.map((movie) => (
             <MovieCard
@@ -59,9 +57,9 @@ export default function Movies() {
             />
           ))}
       </div>
-            <div ref={endPage} className="loading">
-              <img src={Loading} alt="loading gif" />
-            </div>
+      <div ref={endPage} className="loading">
+        <img src={Loading} alt="loading gif" />
+      </div>
     </div>
   );
 }

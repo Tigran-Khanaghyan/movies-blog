@@ -4,6 +4,7 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
+import SearchIcon from "@material-ui/icons/Search"
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -46,6 +47,11 @@ export default function SimpleBottomNavigation() {
         style={{ color: "white" }}
         label="Favorites"
         icon={<FavoriteIcon />}
+      />
+      <BottomNavigationAction
+        style={{ color: "white" }}
+        label="Search"
+        icon={<SearchIcon />}
       />
     </BottomNavigation>
   );
