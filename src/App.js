@@ -8,6 +8,7 @@ import Movies from "./pages/Movies/Movies";
 import Favorites from "./pages/Favorites/Favorites";
 import LogIn from "./pages/Login/Login";
 import Search from "./components/Search/Search";
+import SingleMoviePage from "./components/SingleMovie/SingleMoviePage";
 function App() {
   return (
     <Router>
@@ -19,6 +20,7 @@ function App() {
             <Route path="/favorites" component={Favorites} />
             <Route path="/login" component={LogIn} />
             <Route path="/search" component={Search} />
+            <Route path="/movie/:id" render={() => <SingleMoviePage />} />
           </Switch>
         </Container>
       </div>

@@ -3,15 +3,26 @@ import PropTypes from "prop-types";
 import "./MovieCard.css";
 import { img_300 } from "../../config/config";
 import { Badge } from "@material-ui/core";
-import Panda from "../../images/panda.jpg";
+import { useHistory } from "react-router";
+import Panda from "../../images/Panda.jpg";
 
-const MovieCard = ({ id, title, poster, date, media, voteAverage }) => {
+const MovieCard = (props) => {
+
+  let { id, title, poster, date, media, voteAverage } = props
+  const history = useHistory();
+  
+  const handleMovieClick = () => {
+    history.push(`movie/${id}`)
+    localStorage.setItem('clickedMovie', JSON.stringify(props.movie))
+  }
+
+
   return (
     <Badge
       badgeContent={voteAverage}
       color={voteAverage > 6 ? "secondary" : "primary"}
     >
-      <div className="badge-container">
+      <div className="badge-container" onClick={handleMovieClick}>
         <div className="media">
           <img
             className="poster"
@@ -19,7 +30,9 @@ const MovieCard = ({ id, title, poster, date, media, voteAverage }) => {
             alt={title}
           />
           <div className='middle'>
-            <button onClick={() => console.log(1)} className='button'>Add to Favorites</button>
+            <button onClick={(event) => {
+              event.stopPropagation()
+              console.log(1)}} className='button'>Add to Favorites</button>
           </div>
           <b className="title">{title}</b>
           <span>{media === "tv" ? "TV Series" : "Movie"}</span>

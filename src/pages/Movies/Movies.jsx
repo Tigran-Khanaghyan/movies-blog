@@ -47,6 +47,7 @@ export default function Movies() {
         {content &&
           content.map((movie) => (
             <MovieCard
+              movie={movie}
               key={movie.id}
               id={movie.id}
               title={movie.title || movie.name}
