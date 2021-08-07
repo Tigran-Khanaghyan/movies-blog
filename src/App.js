@@ -7,7 +7,7 @@ import { Container } from "@material-ui/core";
 import Movies from "./pages/Movies/Movies";
 import Favorites from "./pages/Favorites/Favorites";
 import LogIn from "./pages/Login/Login";
-import Search from "./pages/Search/Search";
+import Search from "./components/Search/Search";
 function App() {
   return (
     <Router>

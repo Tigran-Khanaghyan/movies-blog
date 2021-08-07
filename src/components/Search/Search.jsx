@@ -4,9 +4,7 @@ import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Loading from "../../images/Loading.gif";
-import { Button } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
-import MovieCard from "../../components/MovieCard/MovieCard";
+import MovieCard from "../MovieCard/MovieCard";
 
 export default function Search(props) {
   const [searchText, setSearchText] = useState("");
@@ -44,7 +42,7 @@ export default function Search(props) {
   }, [page]);
 
   useEffect(() => {
-    fetchNewSearch()
+    fetchNewSearch();
   }, [searchText]);
 
   const loadMore = () => {
@@ -78,13 +76,6 @@ export default function Search(props) {
               setSearchText(e.target.value);
             }}
           />
-          <Button
-            variant="contained"
-            style={{ marginLeft: 10 }}
-            onClick={fetchSearch}
-          >
-            <SearchIcon />
-          </Button>
         </div>
       </ThemeProvider>
       <div className="container">

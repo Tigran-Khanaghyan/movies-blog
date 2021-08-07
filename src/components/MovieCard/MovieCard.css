@@ -1,41 +1,76 @@
 .media {
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    padding: 5px;
-    margin: 5px 0;
-    background-color: #282c34;
-    border-radius: 10px;
-    position: relative;
-    font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 5px;
+  margin: 5px 0;
+  background-color: #282c34;
+  border-radius: 10px;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+}
+
+.media:hover {
+  background-color: white;
+  color: black;
+}
+
+@media (max-width: 550px) {
+  .media {
+    width: 46%;
   }
-  
-  .media:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  @media (max-width: 550px) {
-    .media {
-      width: 46%;
-    }
-  }
-  
-  .poster {
-    border-radius: 10px;
-  }
-  
-  .title {
-    width: 100%;
-    text-align: center;
-    font-size: 17px;
-    padding: 8px 0;
-  }
-  
-  .date {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 3px;
-    padding: 0 2px;
-    padding-bottom: 3px;
-  }
+}
+
+.poster {
+  border-radius: 10px;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.badge-container:hover .poster {
+  opacity: 0.3;
+}
+.badge-container:hover .middle {
+  opacity: 1;
+}
+
+.button {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+.button:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  font-size: 17px;
+  padding: 8px 0;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3px;
+  padding: 0 2px;
+  padding-bottom: 3px;
+}
