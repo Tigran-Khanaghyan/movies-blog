@@ -19,7 +19,7 @@ const MovieCard = ({ id, title, poster, date, media, voteAverage }) => {
             alt={title}
           />
           <div className='middle'>
-            <button onClick={() => console.log(1)} className='button'>Hello</button>
+            <button onClick={() => console.log(1)} className='button'>Add to Favorites</button>
           </div>
           <b className="title">{title}</b>
           <span>{media === "tv" ? "TV Series" : "Movie"}</span>
